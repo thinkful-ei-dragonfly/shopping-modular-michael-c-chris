@@ -13,7 +13,7 @@ const store = (function() {
   let searchTerm = '';
 
   function findById(id){
-    return this.items.find(function(el) {
+    return items.find(function(el) {
       return el.id === id;
     });
   }
@@ -29,7 +29,7 @@ const store = (function() {
   }
 
   function findAndToggleChecked(id) {
-    let currentItem = this.items.findById(id);
+    let currentItem = findById(id);
     currentItem.checked = !currentItem.checked;
   }
 
@@ -47,6 +47,14 @@ const store = (function() {
     console.log(itemIndex);
     this.items.splice(itemIndex, 1);
   }
+
+  function toggleCheckedFilter() {
+    this.hideCheckedItems = !this.hideCheckedItems;
+  }
+
+  function setSearchTerm(arg) {
+    this.searchTerm = arg;
+  }
   return {
     items,
     hideCheckedItems,
@@ -57,6 +65,8 @@ const store = (function() {
     findAndToggleChecked,
     findAndUpdateName,
     findAndDelete,
+    toggleCheckedFilter,
+    setSearchTerm,
   }
 }() );
 
