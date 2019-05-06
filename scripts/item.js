@@ -1,22 +1,24 @@
+'use strict';
+
 const Item = (function() {
-    const foo = 'bar'; 
-    function validateName(name) {
-        if (!name) {
-        throw new TypeError('Name does not exist.');
-        }
+  const foo = 'bar'; 
+  function validateName(name) {
+    if (!name) {
+      throw new TypeError('Name does not exist.');
     }
+  }
     
-    function create(name) {
-        return {
-            id: cuid(),
-            name,
-            checked: false
-        };
-    }
+  function create(name) {
     return {
-        validateName,
-        create
+      id: cuid(),
+      name,
+      checked: false
     };
+  }
+  return {
+    validateName,
+    create
+  };
 } ());
 
 

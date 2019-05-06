@@ -19,5 +19,5 @@ $(document).ready(function() {
   shoppingList.render();
 });
 
-console.log(Item);
-console.log(Item.foo);
+// console.log(Item);
+// console.log(Item.foo);
