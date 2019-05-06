@@ -13,8 +13,8 @@ const store = (function() {
   let searchTerm = '';
 
   function findById(id){
-    items.find(function(el) {
-      return el['id'] === id;
+    return this.items.find(function(el) {
+      return el.id === id;
     });
   }
 
@@ -28,6 +28,25 @@ const store = (function() {
     }
   }
 
+  function findAndToggleChecked(id) {
+    let currentItem = this.items.findById(id);
+    currentItem.checked = !currentItem.checked;
+  }
+
+  function findAndUpdateName(id, newName) {
+    try {
+      Item.validateName(newName)
+      findById(id).name = newName;
+    } catch(e) {
+      throw new Error(` Cannot update name: ${e.message}`);
+    }
+  }
+
+  function findAndDelete(id) {
+    let itemIndex = this.items.findIndex(item => item.id === id);
+    console.log(itemIndex);
+    this.items.splice(itemIndex, 1);
+  }
   return {
     items,
     hideCheckedItems,
@@ -35,8 +54,14 @@ const store = (function() {
     foo,
     findById,
     addItem,
+    findAndToggleChecked,
+    findAndUpdateName,
+    findAndDelete,
   }
 }() );
 
 
 console.log(store.addItem('Blue Bananas'));
+
+store.findAndDelete(store.items[0].id);
+
